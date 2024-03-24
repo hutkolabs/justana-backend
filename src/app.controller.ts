@@ -6,6 +6,11 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  async check() {
+    return 'OK';
+  }
+
+  @Get('advise')
   async getHello() {
     const balances = [
       {
