@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -10,9 +10,11 @@ export class AppController {
     return 'OK';
   }
 
-  @Get('advise')
-  async getHello() {
-    const balances = [
+  @Post('advise')
+  async getHello(
+    @Body() body: { balances: Array<{ asset: string; balance: string }> },
+  ) {
+    const balances = body?.balances ?? [
       {
         asset: 'BTC',
         balance: '0.1',
